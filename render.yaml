@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: jarvis-cloud
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: NVIDIA_API_KEY
+        sync: false
+      - key: NVIDIA_MODEL
+        value: openai/gpt-oss-20b

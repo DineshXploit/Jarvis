@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JARVIS</title>
+  <link rel="stylesheet" href="./src/ui/style.css">
+</head>
+<body>
+  <div id="app-container">
+    <!-- Top Bar -->
+    <div class="titlebar">
+      <div class="system-status left-status">
+        <span class="status-led"></span>
+        <span>SYSTEM ONLINE</span>
+      </div>
+
+      <div class="brand-title-wrap">
+        <div class="brand-title">J.A.R.V.I.S.</div>
+        <div class="brand-subtitle">YOUR AI ASSISTANT</div>
+      </div>
+
+      <div class="system-metrics">
+        <div class="metric-row"><span>CPU</span><div class="metric"><i style="--pct: 12%"></i></div><strong>12%</strong></div>
+        <div class="metric-row"><span>MEMORY</span><div class="metric"><i style="--pct: 34%"></i></div><strong>34%</strong></div>
+        <div class="metric-row"><span>GPU</span><div class="metric"><i style="--pct: 18%"></i></div><strong>18%</strong></div>
+      </div>
+
+      <div class="window-controls">
+        <button id="btn-minimize" class="win-btn" title="Minimize">
+          <svg width="10" height="2" viewBox="0 0 10 2" fill="currentColor">
+            <rect width="10" height="2" rx="1"/>
+          </svg>
+        </button>
+        <button id="btn-close" class="win-btn close" title="Close">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M1 1L9 9M9 1L1 9"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Side HUD info -->
+    <div class="hud-side left-side">
+      <div class="side-label">
+        <span>VOICE</span>
+        <span>ASSISTANT</span>
+        <span>ACTIVE</span>
+      </div>
+      <div class="mini-line"></div>
+    </div>
+
+    <div class="hud-side right-side">
+      <div class="side-label right-label">
+        <span>SMARTER</span>
+        <span>TODAY</span>
+        <span>STRONGER</span>
+        <span>TOMORROW</span>
+      </div>
+    </div>
+
+    <!-- 3D WebGL Orb Viewport -->
+    <div id="orb-viewport"></div>
+
+    <!-- WebGL Fallback -->
+    <div id="webgl-fallback">
+      WebGL is not supported or encountered an error initializing.
+    </div>
+
+    <!-- Debug HUD (Ctrl+Shift+D) -->
+    <div id="debug-overlay"></div>
+
+    <!-- Web Intelligence panel. Independent of the orb/voice state machine:
+         it renders only real retrieved sources pushed from the main process. -->
+    <aside id="web-panel" class="web-panel" hidden aria-live="polite">
+      <div class="web-panel-head">
+        <span class="web-panel-title">WEB INTELLIGENCE</span>
+        <span id="web-panel-status" class="web-panel-status">IDLE</span>
+        <button id="web-panel-close" class="web-panel-close" title="Hide sources" aria-label="Hide sources">&times;</button>
+      </div>
+      <div id="web-panel-query" class="web-panel-query"></div>
+      <div id="web-panel-results" class="web-panel-results"></div>
+      <div id="web-panel-answer" class="web-panel-answer" hidden></div>
+    </aside>
+
+    <!-- Bottom HUD -->
+    <div class="bottom-hud">
+      <div id="error-message" class="error-message"></div>
+
+      <div class="state-readout">
+        <div id="status-text" class="status-text" data-state="idle">READY</div>
+      </div>
+
+      <div class="hold-to-talk-wrap">
+        <button id="mic-button" class="mic-btn" title="Click or Press Space to Speak">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="22"/>
+          </svg>
+        </button>
+        <span>HOLD TO TALK</span>
+      </div>
+
+      <div class="input-wrapper">
+        <input 
+          type="text" 
+          id="command-input" 
+          class="command-input" 
+          placeholder="Ask JARVIS or press Space to talk..." 
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+    </div>
+
+    <div class="lower-left-hud">
+      <div class="audio-visualizer" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="lower-left-copy">LISTEN / THINK / RESPOND</div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/ui/main.ts"></script>
+</body>
+</html>

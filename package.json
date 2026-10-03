@@ -1,0 +1,64 @@
+{
+  "name": "jarvis",
+  "version": "1.0.0",
+  "description": "JARVIS Cinematic Audio-Reactive AI Assistant",
+  "main": "dist-electron/main.cjs",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:cloud": "vite build --config vite.cloud.config.ts",
+    "build:mobile": "vite build",
+    "sync:android": "cap sync android",
+    "apk": "npm run build:mobile && cap sync android && cd android && gradlew.bat assembleDebug",
+    "start": "electron .",
+    "start:cloud": "node dist-cloud/server.js",
+    "cloud:test": "vite build --config vite.cloudtest.config.ts && node dist-tools/cloudTest.mjs",
+    "rag:test": "vite build --config vite.rag.config.ts && node dist-tools/ragTest.mjs",
+    "stt-startup:test": "vite build --config vite.sttstartup.config.ts && node dist-tools/sttStartupTest.mjs",
+    "typecheck": "tsc --noEmit",
+    "nvidia:test": "vite build --config vite.nvidia.config.ts && node dist-tools/nvidiaTest.mjs",
+    "security:test": "vite build --config vite.security.config.ts && node dist-tools/securityTest.mjs",
+    "telemetry:test": "vite build --config vite.telemetry.config.ts && node dist-tools/telemetryTest.mjs",
+    "self-improvement:test": "vite build --config vite.self-improvement.config.ts && node dist-tools/selfImprovementTest.mjs",
+    "approval:test": "vite build --config vite.approval.config.ts && node dist-tools/approvalTest.mjs",
+    "level2:test": "vite build --config vite.level2.config.ts && node dist-tools/level2Test.mjs",
+    "router:test": "vite build --config vite.router.config.ts && node dist-tools/routerTest.mjs",
+    "router:bench": "vite build --config vite.routerbench.config.ts && node dist-tools/routerBenchmark.mjs",
+    "speech:test": "vite build --config vite.speech.config.ts && node dist-tools/speechTest.mjs",
+    "voice:vad:test": "node --experimental-strip-types --test src/ui/voice/stt/voiceActivityDetector.test.mjs src/ui/audio/bargeInDetector.test.mjs",
+    "test": "npm run typecheck && npm run telemetry:test && npm run self-improvement:test && npm run approval:test && npm run level2:test && npm run router:test && npm run cloud:test && npm run rag:test && npm run security:test && npm run voice:vad:test",
+    "search:up": "docker compose up -d searxng",
+    "search:down": "docker compose down --remove-orphans",
+    "search:logs": "docker compose logs -f searxng",
+    "search:status": "node --input-type=module -e \"const url = process.env.SEARXNG_URL || 'http://localhost:8080'; fetch(new URL('/search?q=' + encodeURIComponent('latest NVIDIA news') + '&format=json&count=1', url)).then(async (r) => { const body = await r.text(); console.log('HTTP ' + r.status); console.log(body.slice(0, 400)); process.exit(r.ok ? 0 : 1); }).catch((err) => { console.error(err.message); process.exit(1); })\""
+  },
+  "keywords": [
+    "jarvis",
+    "ai",
+    "threejs",
+    "webgl",
+    "electron"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/cli": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
+    "dotenv": "^18.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "@types/three": "^0.186.0",
+    "electron": "^44.5.1",
+    "three": "^0.186.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1",
+    "vite-plugin-electron": "^1.1.2",
+    "vite-plugin-electron-renderer": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

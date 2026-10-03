@@ -1,0 +1,69 @@
+# Dependencies and build caches
+node_modules
+npm-debug.log*
+.npm
+.cache
+
+# Secrets. Never bake these into an image layer: image layers are readable by
+# anyone who can pull the image, and `docker history` shows RUN arguments.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+credentials.json
+
+# Version control. Git history is large and has no business in a runtime image.
+.git
+.gitignore
+.gitattributes
+.github
+
+# Desktop build output. The container runs the Node backend only.
+dist/
+dist-electron/
+dist-tools/
+
+# Python bytecode only. The NVCF speech worker itself (python/nvcf) MUST stay
+# in the build context: the cloud image ships it so the API can serve /stt and
+# /tts. Only the Windows virtualenv and caches are excluded, because the image
+# builds its own Linux one.
+python/.venv/
+python/__pycache__/
+**/__pycache__/
+*.pyc
+
+# Electron-specific. Saves ~400 MB and removes any chance of a GUI dependency
+# reaching the runtime image.
+electron/
+**/*.log
+
+# Development tooling and editor state
+.vscode
+.idea
+.claude
+.kilo
+*.tsbuildinfo
+
+# Agent skills: documentation for the AI assistant, not runtime code.
+.agents/
+
+# Runtime output and scratch
+data/
+screenshots/
+recordings/
+tmp/
+temp/
+logs/
+*.log
+
+# Docs and deployment descriptors that the runtime does not need
+README.md
+docs/
+
+# OS noise
+Thumbs.db
+.DS_Store

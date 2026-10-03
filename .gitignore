@@ -1,0 +1,44 @@
+# Environment Variables
+# .env holds NVIDIA_API_KEY and must never be committed.
+.env
+.env.local
+.env.*.local
+.envrc
+
+# Credentials
+# Defence in depth: JARVIS only ever needs NVIDIA_API_KEY via .env, but a stray
+# key material file must never reach a commit or a push.
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+credentials.json
+
+# Node modules
+node_modules/
+
+# Python
+python/.venv/
+__pycache__/
+*.py[cod]
+
+# Build artifacts
+dist/
+dist-electron/
+dist-cloud/
+dist-tools/
+
+# Local runtime output
+screenshots/
+*.log
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Self-improvement telemetry (local runtime data, never committed)
+data/
+
+# Self-improvement sandboxes (git worktrees, always transient)
+.self-improvement/

@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "skills": {
+    "g-assist-mcp-skill": {
+      "source": "NVIDIA/skills",
+      "sourceType": "github",
+      "skillPath": "skills/g-assist-mcp-skill/SKILL.md",
+      "computedHash": "49a945912eebef67cf2ee4565ad89264baaf249b6660d6bb7f325e6d686fb20b"
+    },
+    "nemo-retriever": {
+      "source": "NVIDIA/skills",
+      "sourceType": "github",
+      "skillPath": "skills/nemo-retriever/SKILL.md",
+      "computedHash": "cb0297593945665be7192eb7f0d1b1b049ebf4f50a760d70f3316b9e40c92fb7"
+    },
+    "nemotron-asr-finetune": {
+      "source": "NVIDIA/skills",
+      "sourceType": "github",
+      "skillPath": "skills/nemotron-asr-finetune/SKILL.md",
+      "computedHash": "507a8000c039dbbc8ec5decda8c07c6033e1c72facbc0d1b0e9d6ce40b0503b4"
+    },
+    "nemotron-policy-generator": {
+      "source": "NVIDIA/skills",
+      "sourceType": "github",
+      "skillPath": "skills/nemotron-policy-generator/SKILL.md",
+      "computedHash": "d29f030fd4636f48aec48aefbe3605553753d7d91ee22c24ef066e1eca1be53f"
+    },
+    "nemotron-retrieval-recipes": {
+      "source": "NVIDIA/skills",
+      "sourceType": "github",
+      "skillPath": "skills/nemotron-retrieval-recipes/SKILL.md",
+      "computedHash": "7033fbde10e5fca20163d5e536eeb24602b88feaf89d7ca94720fd543ef4bbd6"
+    },
+    "nemotron-speech": {
+      "source": "NVIDIA/skills",
+      "sourceType": "github",
+      "skillPath": "skills/nemotron-speech/SKILL.md",
+      "computedHash": "bf444165dacb50c79fec0d882a628bb1a84ddd79df51924911efaa57e03ca45c"
+    },
+    "nemotron-voice-agent-builder": {
+      "source": "NVIDIA/skills",
+      "sourceType": "github",
+      "skillPath": "skills/nemotron-voice-agent-builder/SKILL.md",
+      "computedHash": "01b20c57e99ed09c513c5a6e8e82830d82972c46cd778cc7a833ef7838bab75b"
+    },
+    "rag-blueprint": {
+      "source": "NVIDIA/skills",
+      "sourceType": "github",
+      "skillPath": "skills/rag-blueprint/SKILL.md",
+      "computedHash": "4621085caf70c1ab91cf321dcd97ed432e44150565c30f9b2d87bbb4a2b62dfe"
+    }
+  }
+}

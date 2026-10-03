@@ -1,0 +1,58 @@
+# SearXNG configuration for JARVIS.
+#
+# Used by both the local docker-compose service and the cloud deployment.
+#
+# The secret is read from SEARXNG_SECRET and must NOT be hardcoded here: this
+# file is committed to git, and a public SearXNG with a known secret is a
+# free web-search proxy for anyone who reads the repository.
+
+use_default_settings: true
+
+general:
+  instance_name: "JARVIS Web Intelligence"
+  # Publicly reachable deployments should enable this so results link back to
+  # the instance rather than to localhost.
+  debug: false
+
+server:
+  # Overridden by the SEARXNG_SECRET environment variable in the image.
+  secret_key: "${SEARXNG_SECRET:-change-me-before-public-deployment}"
+  bind_address: "0.0.0.0"
+  port: 8080
+  image_proxy: false
+  limiter: true
+  public_instance: false
+
+search:
+  # JSON is required: research.ts queries /search with format=json. Without it
+  # every search returns HTML and web intelligence returns no sources.
+  formats:
+    - html
+    - json
+  safe_search: 1
+  autocomplete: ""
+
+outgoing:
+  request_timeout: 6.0
+  max_request_timeout: 12.0
+  pool_connections: 20
+  pool_maxsize: 10
+
+# Without a limiter a public instance is scraped until the upstream engines
+# block the IP, which breaks search for the owner as well as for the abusers.
+limiter:
+  enabled: true
+  # Accept a browser Origin header so the UI works from a real browser.
+  real_ip:
+    x_for: 0
+    ipv4_prefix: 32
+    ipv6_prefix: 56
+  # Do not trust X-Forwarded-For: a client can spoof it and bypass the limiter
+  # entirely unless the proxy chain is known.
+  trust_proxy: false
+  link_token: false
+
+ui:
+  static_use_hash: true
+  infinite_scroll: false
+  center_alignment: false
